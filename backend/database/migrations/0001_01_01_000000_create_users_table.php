@@ -13,12 +13,49 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+
+            $table->string('first_name', 100);
+            $table->string('last_name', 100)->nullable();
+
+            $table->string('username', 50)
+                ->nullable()
+                ->unique();
+
+            $table->string('email')
+                ->unique();
+
+            $table->timestamp('email_verified_at')
+                ->nullable();
+
             $table->string('password');
+
+            $table->string('phone', 20)
+                ->nullable()
+                ->unique();
+
+            $table->string('avatar', 2048)
+                ->nullable();
+
+            $table->date('birth_date')
+                ->nullable();
+
+            $table->enum('gender', ['male', 'female', 'other'])
+                ->nullable()
+                ->index();
+
+            $table->enum('status', ['active', 'blocked', 'pending'])
+                ->default('active')
+                ->index();
+
+            $table->timestamp('last_login_at')
+                ->nullable()
+                ->index();
+
             $table->rememberToken();
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -29,7 +66,12 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
