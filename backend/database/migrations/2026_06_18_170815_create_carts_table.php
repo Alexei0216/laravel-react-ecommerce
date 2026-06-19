@@ -17,14 +17,22 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained()
-                ->nullOnDelete();
+                ->cascadeOnDelete();
 
-            $table->string('session_id')
-                ->nullable();
+            $table->string('session_id', 128)
+                ->nullable()
+                ->index();
+
+            $table->enum('status', [
+                'active',
+                'abandoned'
+            ])
+                ->default('active')
+                ->index();
 
             $table->timestamps();
         });
-    }   
+    }
 
     /**
      * Reverse the migrations.

@@ -20,15 +20,18 @@ return new class extends Migration
 
             $table->foreignId('product_id')
                 ->constrained()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->foreignId('product_variant_id')
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->unsignedInteger('quantity')
-                ->default(1);
+            $table->unsignedInteger('quantity')->default(1);
+
+            $table->decimal('price', 10, 2);
+
+            $table->string('product_name')->nullable();
 
             $table->timestamps();
 
