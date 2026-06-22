@@ -1,5 +1,8 @@
 FROM php:8.4-fpm
 
+ARG UID=1000
+ARG GID=1000
+
 # системные зависимости
 RUN apt-get update && apt-get install -y \
     git \
@@ -35,9 +38,16 @@ RUN pecl install redis \
 
 RUN docker-php-ext-install opcache
 
+RUN groupmod -g ${GID} www-data \
+    && usermod -u ${UID} -g ${GID} www-data
+
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
+
+RUN chown -R www-data:www-data /var/www
+
+USER www-data
 
 CMD ["php-fpm"]
