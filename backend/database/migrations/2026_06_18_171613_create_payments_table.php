@@ -19,13 +19,18 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->string('provider');
+
             $table->enum('status', ['pending', 'paid', 'failed'])
                 ->default('pending');
 
             $table->decimal('amount', 10, 2);
 
+            $table->string('currency', 10)
+                ->default('EUR');
+
             $table->string('transaction_id')
-                ->nullable();
+                ->nullable()
+                ->index();
 
             $table->timestamp('paid_at')
                 ->nullable();

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained()
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->unique();
 
             $table->string('session_id', 128)
                 ->nullable()

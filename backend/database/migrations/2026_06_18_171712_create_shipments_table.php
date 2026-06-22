@@ -22,7 +22,8 @@ return new class extends Migration
                 ->nullable();
 
             $table->string('tracking_number')
-                ->nullable();
+                ->nullable()
+                ->index();
 
             $table->enum('status', ['pending', 'shipped', 'delivered'])
                 ->default('pending');

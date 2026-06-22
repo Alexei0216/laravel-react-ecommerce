@@ -19,6 +19,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->string('url', 2048);
+            
             $table->boolean('is_main')
                 ->default(false);
 

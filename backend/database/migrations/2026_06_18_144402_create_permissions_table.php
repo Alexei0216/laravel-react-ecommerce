@@ -18,6 +18,7 @@ return new class extends Migration
                 ->unique();
 
             $table->string('display_name', 100);
+            
             $table->string('module', 50)
                 ->index();
 

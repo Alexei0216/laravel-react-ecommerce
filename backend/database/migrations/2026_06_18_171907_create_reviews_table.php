@@ -22,7 +22,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->unsignedTinyInteger('rating');
+            $table->unsignedTinyInteger('rating')->check('rating >= 1 and rating <= 5');
 
             $table->text('comment')
                 ->nullable();

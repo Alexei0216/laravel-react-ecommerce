@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->string('name', 50)
                 ->unique();
+
             $table->string('display_name', 100);
 
             $table->text('description')
