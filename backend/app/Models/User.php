@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Database\Factories\UserFactory;
+use App\Enums\UserStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -16,15 +16,15 @@ use Illuminate\Notifications\Notifiable;
 #[Fillable([
     'first_name',
     'last_name',
-    'username',
     'email',
     'password',
     'phone',
+    'currency',
     'avatar',
     'birth_date',
-    'gender',
     'status',
     'last_login_at',
+    'last_login_ip'
 ])]
 
 #[Hidden([
@@ -39,6 +39,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'status' => UserStatus::class,
             'email_verified_at' => 'datetime',
             'birth_date' => 'date',
             'last_login_at' => 'datetime',

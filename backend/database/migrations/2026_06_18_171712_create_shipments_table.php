@@ -25,7 +25,7 @@ return new class extends Migration
                 ->nullable()
                 ->index();
 
-            $table->enum('status', ['pending', 'shipped', 'delivered'])
+            $table->string('status')
                 ->default('pending');
 
             $table->timestamp('shipped_at')

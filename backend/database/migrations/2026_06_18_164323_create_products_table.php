@@ -15,20 +15,24 @@ return new class extends Migration
             $table->id();
 
             $table->string('name', 155);
+
             $table->string('slug', 255)
                 ->unique();
 
             $table->text('description');
+
             $table->string('short_description');
 
             $table->decimal('price', 10, 2);
+
             $table->decimal('old_price', 10, 2)
                 ->nullable();
 
             $table->string('sku')
                 ->unique();
 
-            $table->enum('status', ['active', 'draft', 'archived']);
+            $table->string('status')
+                ->default('draft');
 
             $table->boolean('is_featured')
                 ->default(false);

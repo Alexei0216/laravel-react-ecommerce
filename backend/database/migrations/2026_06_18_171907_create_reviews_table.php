@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('comment')
                 ->nullable();
 
-            $table->enum('status', ['pending', 'approved', 'rejected'])
+            $table->string('status')
                 ->default('pending');
 
             $table->timestamps();

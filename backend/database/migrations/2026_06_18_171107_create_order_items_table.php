@@ -26,7 +26,9 @@ return new class extends Migration
                 ->constrained();
 
             $table->string('product_name');
+
             $table->decimal('price', 10, 2);
+            
             $table->unsignedInteger('quantity');
 
             $table->decimal('total', 10, 2);

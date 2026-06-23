@@ -17,10 +17,6 @@ return new class extends Migration
             $table->string('first_name', 100);
             $table->string('last_name', 100)->nullable();
 
-            $table->string('username', 50)
-                ->nullable()
-                ->unique();
-
             $table->string('email')
                 ->unique();
 
@@ -29,27 +25,28 @@ return new class extends Migration
 
             $table->string('password');
 
-            $table->string('phone', 20)
-                ->nullable()
-                ->unique();
+            $table->string('phone')
+                ->nullable();
 
-            $table->string('avatar', 2048)
+            $table->string('currency')
+                ->default('EUR');
+
+            $table->string('avatar')
                 ->nullable();
 
             $table->date('birth_date')
                 ->nullable();
 
-            $table->enum('gender', ['male', 'female', 'other'])
-                ->nullable()
-                ->index();
-
-            $table->enum('status', ['active', 'blocked', 'pending'])
+            $table->string('status')
                 ->default('active')
                 ->index();
 
             $table->timestamp('last_login_at')
                 ->nullable()
                 ->index();
+
+            $table->string('last_login_ip', 45)
+                ->nullable();
 
             $table->rememberToken();
 

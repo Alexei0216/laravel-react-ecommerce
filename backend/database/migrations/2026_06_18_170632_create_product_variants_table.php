@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedInteger('stock')
                 ->default(0);
 
-            $table->enum('status', ['active', 'inactive'])
+            $table->string('status')
                 ->default('active')
                 ->index();
 

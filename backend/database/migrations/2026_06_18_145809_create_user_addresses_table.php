@@ -18,15 +18,15 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->index(['user_id', 'type']);
-
-            $table->enum('type', ['shipping', 'billing'])
+            $table->string('type')
                 ->default('shipping');
+
+            $table->index(['user_id', 'type']);
 
             $table->string('country_code', 2)
                 ->index();
 
-            $table->string('state', 100)
+            $table->string('province', 100)
                 ->nullable();
 
             $table->string('city', 100);
@@ -36,6 +36,9 @@ return new class extends Migration
             $table->string('address_line_1', 255);
 
             $table->string('address_line_2', 255)
+                ->nullable();
+
+            $table->text('delivery_notes')
                 ->nullable();
 
             $table->string('phone', 20)

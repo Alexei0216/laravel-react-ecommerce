@@ -19,11 +19,12 @@ return new class extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->enum('status', ['pending', 'paid', 'shipped', 'completed', 'canceled'])
+            $table->string('status')
                 ->default('pending');
 
             $table->decimal('total', 10, 2);
-            $table->enum('currency', ['EUR', 'USD'])
+
+            $table->string('currency')
                 ->default('EUR');
 
             $table->foreignId('shipping_address_id')

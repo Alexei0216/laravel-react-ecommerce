@@ -24,10 +24,7 @@ return new class extends Migration
                 ->nullable()
                 ->index();
 
-            $table->enum('status', [
-                'active',
-                'abandoned'
-            ])
+            $table->string('status')
                 ->default('active')
                 ->index();
 

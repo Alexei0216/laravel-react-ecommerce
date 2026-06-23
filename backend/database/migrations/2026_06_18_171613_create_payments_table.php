@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string('provider');
 
-            $table->enum('status', ['pending', 'paid', 'failed'])
+            $table->string('status')
                 ->default('pending');
 
             $table->decimal('amount', 10, 2);

@@ -23,7 +23,8 @@ class Shipment extends Model
     protected function casts(): array
     {
         return [
-            'status' => ShipmentStatus::class
+            'status' => ShipmentStatus::class,
+            'shipped_at' => 'datetime',
         ];
     }
 
@@ -37,6 +38,13 @@ class Shipment extends Model
         $this->update([
             'status' => ShipmentStatus::SHIPPED,
             'shipped_at' => now(),
+        ]);
+    }
+
+    public function markAsDelivered(): void
+    {
+        $this->update([
+            'status' => ShipmentStatus::DELIVERED,
         ]);
     }
 }
